@@ -14,6 +14,11 @@ async def on_ready():
     
 @client.event
 async def on_message(message):
-    print(f'Message was: {message.content}')
+    
+    if message.author == client.user:
+        return
+    
+    if message.channel.id == CHANNEL_ID:
+        await message.channel.send(message.content)
     
 client.run(TOKEN)
