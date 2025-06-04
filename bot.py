@@ -2,7 +2,7 @@ import discord
 import asyncio
 
 TOKEN = ''     # Replace with your bot's token
-CHANNEL_ID = 0 # Replace with your channel ID
+CHANNEL_ID = 1379950289569976330 # Replace with your channel ID
 MESSAGE = 'Hey!'
 
 intents = discord.Intents.all()
@@ -11,15 +11,9 @@ client = discord.Client(intents=intents)
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
-    channel = client.get_channel(CHANNEL_ID)
     
-    if channel:
-        await channel.send(MESSAGE)
-        print("Message sent successfully.")
-        
-    else:
-        print("Failed to find the channel.")
-        
-    await client.close()
+@client.event
+async def on_message(message):
+    print(f'Message was: {message.content}')
     
 client.run(TOKEN)
