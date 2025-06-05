@@ -1,13 +1,17 @@
-import shlex
 import discord
 import asyncio
+from dotenv import load_dotenv
 import os
 import subprocess
 
+load_dotenv()
 
-TOKEN = ''     # Replace with your bot's token
 CHANNEL_ID = 1379950289569976330 # Replace with your channel ID
-MESSAGE = 'Hey!'
+TOKEN = os.getenv('DISCORD_BOT_TOKEN')
+
+if not TOKEN:
+    raise ValueError("Token not found. Please set DISCORD_BOT_TOKEN in your .env file.")
+
 
 intents = discord.Intents.all()
 intents.messages = True
